@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.Pane?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.pcverksted.application.ViewComputerController"
+            prefHeight="600.0" prefWidth="800.0">
+
+    <!-- Top Bar with Back Button -->
+    <top>
+        <HBox spacing="10" style="-fx-background-color: #333;" alignment="CENTER_LEFT" prefHeight="60">
+            <Button text="Back" onAction="#handleBackButton" />
+        </HBox>
+    </top>
+
+    <!-- Center Section with 3 Columns -->
+    <center>
+        <HBox spacing="20" alignment="CENTER">
+
+            <!-- First Column: Hardware Types -->
+            <VBox spacing="10" alignment="TOP_CENTER" prefWidth="250">
+                <Label text="Hardware Type" style="-fx-font-size: 16px;" />
+                <!-- Dynamically populated parts -->
+                <VBox fx:id="hardwareTypeList" spacing="10"/>
+            </VBox>
+
+            <!-- Second Column: Installed Parts -->
+            <VBox spacing="10" alignment="TOP_CENTER" prefWidth="300">
+                <Label text="Installed Parts" style="-fx-font-size: 16px;" />
+                <VBox fx:id="installedPartsList" spacing="10"/>
+            </VBox>
+
+            <!-- Third Column: Mini-Report -->
+            <VBox spacing="10" alignment="TOP_CENTER" prefWidth="200">
+                <Label text="Mini Report" style="-fx-font-size: 16px;" />
+                <Label text="Total Investment:" />
+                <Label fx:id="totalInvestmentLabel" text="0,00 kr" style="-fx-font-size: 14px;" />
+                <Label text="Total Potential Profit:" />
+                <Label fx:id="totalProfitLabel" text="0,00 kr" style="-fx-font-size: 14px;" />
+            </VBox>
+        </HBox>
+    </center>
+
+    <!-- Drawer for Adding Parts (hidden initially) -->
+    <left>
+        <VBox fx:id="drawer" prefWidth="200" visible="false" style="-fx-background-color: #555;" spacing="10" alignment="CENTER">
+            <Label text="Select Part Type" style="-fx-font-size: 14px; -fx-text-fill: white;" />
+            <!-- Buttons to select part type (e.g., CPU, GPU) -->
+            <Button text="CPU" onAction="#selectPartType"/>
+            <Button text="GPU" onAction="#selectPartType"/>
+            <Button text="RAM" onAction="#selectPartType"/>
+            <!-- More part types -->
+        </VBox>
+    </left>
+
+    <bottom>
+
+
+
+            <!-- Footer -->
+            <HBox alignment="CENTER" spacing="10" style="-fx-padding: 10;" prefHeight="50">
+                <Button text="Add Hardware" onAction="#handleAddHardware" />
+                <Button text="Add Software" onAction="#handleAddSoftware" />
+
+                <Pane fx:id="spacer" HBox.hgrow="ALWAYS"/>
+
+                <Button text="Sell" onAction="#handleSellComputer" style="-fx-background-color: #28a745; -fx-text-fill: white;" />
+                <Button text="Discard" onAction="#handleDiscardComputer" style="-fx-background-color: #dc3545; -fx-text-fill: white;" />
+                <Button text="Return" onAction="#handleReturnComputer" style="-fx-background-color: #ffc107; -fx-text-fill: black;" />
+            </HBox>
+
+    </bottom>
+</BorderPane>

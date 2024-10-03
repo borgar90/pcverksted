@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.pcverksted.application.AddComputerDialogController"
+      alignment="CENTER" spacing="10" prefWidth="300" prefHeight="150">
+
+    <!-- Title label -->
+    <Label text="Enter Computer Title:"/>
+
+    <!-- Text field to input the computer name -->
+    <TextField fx:id="computerTitleField" promptText="Enter computer title" />
+
+    <!-- Error message for validation -->
+    <Label fx:id="errorLabel" textFill="red" visible="false"/>
+
+    <!-- Button to add the computer -->
+    <Button text="Add Computer" onAction="#handleAddComputer"/>
+
+</VBox>
