@@ -51,6 +51,12 @@
             <artifactId>controlsfx</artifactId>
             <version>11.1.2</version>
         </dependency>
+        <!-- PostgreSQL Driver -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.2</version>
+        </dependency>
     </dependencies>
 
     <build>

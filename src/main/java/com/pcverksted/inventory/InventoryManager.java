@@ -25,7 +25,7 @@ public class InventoryManager {
     public double getTotalInvestment() {
         double total = 0;
         for ( Computer computer : computers) {
-            total += computer.calculateTotalInvestment();
+            //total += computer.calculateTotalInvestment();
         }
         return total;
     }
@@ -33,7 +33,7 @@ public class InventoryManager {
     public double getTotalStockValue() {
         double total = 0;
         for (Computer computer : computers) {
-            total += computer.calculateTotalValue();
+            // total += computer.calculateTotalValue();
         }
         return total;
     }

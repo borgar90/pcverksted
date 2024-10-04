@@ -1,0 +1,38 @@
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pcverksted.application.AddSoftwareDialogController" spacing="10" alignment="CENTER" style="-fx-padding: 20;">
+    <Label text="Add New Software" style="-fx-font-size: 16px;" />
+
+    <!-- Title -->
+    <HBox spacing="10">
+        <Label text="Title:" />
+        <TextField fx:id="titleField" promptText="Enter software title" />
+    </HBox>
+
+    <!-- Type -->
+    <HBox spacing="10">
+        <Label text="Type:" />
+        <TextField fx:id="typeField" promptText="Enter software type" />
+    </HBox>
+
+    <!-- Price -->
+    <HBox spacing="10">
+        <Label text="Price:" />
+        <TextField fx:id="priceField" promptText="Enter price" />
+    </HBox>
+
+    <!-- Currency -->
+    <HBox spacing="10">
+        <Label text="Currency:" />
+        <TextField fx:id="currencyField" promptText="Enter currency (e.g., NOK)" />
+    </HBox>
+
+    <!-- Buttons -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Add" onAction="#handleAddSoftwareConfirm" />
+        <Button text="Cancel" onAction="#handleCancel" />
+    </HBox>
+</VBox>

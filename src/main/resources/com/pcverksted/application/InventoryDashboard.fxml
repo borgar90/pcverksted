@@ -1,0 +1,32 @@
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pcverksted.application.ViewInventoryController" spacing="20" alignment="CENTER" style="-fx-padding: 20;">
+    <Label text="View Inventory" style="-fx-font-size: 16px;" />
+
+    <!-- Top Part: Combos for selecting hardware, software, and computer -->
+    <HBox spacing="20" alignment="CENTER">
+        <VBox spacing="10">
+            <Label text="Select Hardware" />
+            <ComboBox fx:id="hardwareComboBox" promptText="Select or add hardware" />
+        </VBox>
+        <VBox spacing="10">
+            <Label text="Select Software" />
+            <ComboBox fx:id="softwareComboBox" promptText="Select or add software" />
+        </VBox>
+        <VBox spacing="10">
+            <Label text="Select Computer" />
+            <ComboBox fx:id="computerComboBox" promptText="Select or add computer" />
+        </VBox>
+    </HBox>
+
+    <!-- Display selected item properties -->
+    <VBox fx:id="itemPropertiesBox" spacing="10" alignment="CENTER">
+        <Label text="Item Properties" />
+        <Label fx:id="itemDetailsLabel" text="Select an item to view details." />
+    </VBox>
+
+</VBox>

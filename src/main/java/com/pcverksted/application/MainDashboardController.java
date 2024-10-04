@@ -1,5 +1,6 @@
 package com.pcverksted.application;
 
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -94,12 +96,16 @@ public class MainDashboardController {
         }
     }
 
-    // When a computer is added, navigate to the "View Computer" screen
+
+
+    // When a computer is added, highlight it and navigate to the "View Computer" screen
     public void addComputer(String title) {
         computers.add(title);
         loadComputers();
 
-        // Automatically navigate to the view screen of the newly added computer
+        // Highlight the newly added computer and navigate to its view
+        selectedComputer = title;
+        highlightSelectedComputer();
         viewComputer(title);
     }
 
@@ -136,6 +142,11 @@ public class MainDashboardController {
 
         pane.getChildren().addAll(rectangle, label);
 
+        // Add mouse hover effects for visual feedback
+        pane.setOnMouseEntered(event -> handleMouseHoverEnter(pane));
+        pane.setOnMouseExited(event -> handleMouseHoverExit(pane));
+
+        // Set action for selection of a computer
         pane.setOnMouseClicked(event -> handleComputerSelection(event, computerName, pane));
 
         return pane;
@@ -144,8 +155,17 @@ public class MainDashboardController {
     private void handleComputerSelection(MouseEvent event, String computerName, StackPane pane) {
         // Handle selection of a computer
         selectedComputer = computerName;
-
         highlightSelectedComputer();
+    }
+
+    private void handleMouseHoverEnter(StackPane pane) {
+        Rectangle rect = (Rectangle) pane.getChildren().get(0);
+        rect.setFill(Color.LIGHTBLUE);  // Change color on hover
+    }
+
+    private void handleMouseHoverExit(StackPane pane) {
+        Rectangle rect = (Rectangle) pane.getChildren().get(0);
+        rect.setFill(Color.LIGHTGRAY);  // Revert color when no longer hovering
     }
 
     private void highlightSelectedComputer() {
@@ -165,30 +185,67 @@ public class MainDashboardController {
                 Rectangle selectedRect = (Rectangle) stackPane.getChildren().get(0);
                 selectedRect.setStroke(Color.BLUE);
                 selectedRect.setStrokeWidth(3);
+
+                // Fancy fade-in animation for the selected computer
+                FadeTransition ft = new FadeTransition(Duration.millis(500), stackPane);
+                ft.setFromValue(0.5);
+                ft.setToValue(1.0);
+                ft.play();
             }
         });
     }
 
+
     @FXML
-    private void handleAddPart() {
-        // Logic to add part to the selected computer
-        if (selectedComputer != null) {
-            System.out.println("Adding part to: " + selectedComputer);
-        } else {
-            System.out.println("No computer selected.");
+    private void handleAddHardware() {
+        try {
+            // Load the AddHardwareDialog FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pcverksted/application/AddHardwareDialog.fxml"));
+            Stage dialogStage = new Stage(StageStyle.DECORATED);
+            dialogStage.setTitle("Add New Hardware");
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
+            dialogStage.setScene(new Scene(loader.load()));
+
+            // Show modal and wait for user input
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     @FXML
     private void handleAddSoftware() {
-        // Logic to add software to the selected computer
-        if (selectedComputer != null) {
-            System.out.println("Adding software to: " + selectedComputer);
-        } else {
-            System.out.println("No computer selected.");
+        try {
+            // Load the AddSoftwareDialog FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pcverksted/application/AddSoftwareDialog.fxml"));
+            Stage dialogStage = new Stage(StageStyle.DECORATED);
+            dialogStage.setTitle("Add New Software");
+            dialogStage.initModality(Modality.APPLICATION_MODAL);
+            dialogStage.setScene(new Scene(loader.load()));
+
+            // Show modal and wait for user input
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
+
+    @FXML
+    private void handleViewInventory() {
+        try {
+            // Load the AddSoftwareDialog FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/pcverksted/application/InventoryDashboard.fxml"));
+            Stage dialogStage = new Stage(StageStyle.DECORATED);
+            dialogStage.setTitle("View Inventory");
+            dialogStage.setScene(new Scene(loader.load()));
+
+            // Show modal and wait for user input
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     private void handleViewReports() {
         // Logic to view reports

@@ -9,32 +9,45 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.ScrollPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml"
-            xmlns="http://javafx.com/javafx/8.0.171"
+<?import javafx.scene.layout.Pane?>
+
+
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.pcverksted.application.MainDashboardController"
-            prefWidth="800" prefHeight="600">
+            prefHeight="600.0" prefWidth="800.0">
 
-    <!-- Main Vertical Layout -->
-    <VBox alignment="CENTER" spacing="10" prefWidth="800" prefHeight="600">
+        <!-- Top Bar with Back Button -->
+        <top >
+            <!-- Header with buttons -->
+            <VBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 10; -fx-background-color: #333;" prefHeight="50">
+                <Label text="PC Verksted Dashboard" style="-fx-font-size: 20px; -fx-text-fill: white" />
+                <HBox spacing="10">
+                    <Button text="Add Computer" onAction="#handleAddComputer" />
+                    <Pane HBox.hgrow="ALWAYS" />  <!-- Spacer to push buttons to the right -->
+                    <Button text="Add Hardware" onAction="#handleAddHardware" />
+                    <Button text="Add Software" onAction="#handleAddSoftware" />
+                </HBox>
+            </VBox>
+        </top>
 
-        <!-- Top section: Add new computer button -->
-        <VBox alignment="CENTER" prefHeight="100" prefWidth="800">
-            <Button text="+ Add New Computer" onAction="#handleAddComputer" style="-fx-font-size: 20px;"/>
-        </VBox>
 
+<center>
         <!-- Center section: Grid displaying computers -->
         <ScrollPane fitToWidth="true" fitToHeight="true">
             <GridPane fx:id="computerGrid" hgap="20" vgap="20" alignment="CENTER">
                 <!-- Computers will be dynamically added here -->
             </GridPane>
         </ScrollPane>
+        </center>
 
+        <bottom>
         <!-- Footer section: Navigation buttons -->
         <HBox alignment="CENTER" spacing="20" prefHeight="80" style="-fx-background-color: lightgray;">
-            <Button text="Add Part" onAction="#handleAddPart" style="-fx-font-size: 16px;"/>
-            <Button text="Add Software" onAction="#handleAddSoftware" style="-fx-font-size: 16px;"/>
+            <Button text="View inventory" onAction="#handleViewInventory" style="-fx-font-size: 16px;"/>
             <Button text="View Reports" onAction="#handleViewReports" style="-fx-font-size: 16px;"/>
-        </HBox>
-    </VBox>
 
-</AnchorPane>
+        </HBox>
+        </bottom>
+
+</BorderPane>
